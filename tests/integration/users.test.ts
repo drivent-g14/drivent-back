@@ -16,7 +16,7 @@ beforeAll(async () => {
 const server = supertest(app);
 
 describe('POST /users', () => {
-  it('should respond with status 400 when body is not given', async () => {
+  it('should respond with status 400 when body is not given test', async () => {
     const response = await server.post('/users');
 
     expect(response.status).toBe(httpStatus.BAD_REQUEST);
