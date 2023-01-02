@@ -53,8 +53,8 @@ async function main() {
     await prisma.room.createMany({
       data: [
         { name: 'Single', capacity: 7, hotelId: hotelResort.id },
-        { name: 'Double', capacity: 5, hotelId: hotelResort.id },
-        { name: 'Triple', capacity: 2, hotelId: hotelResort.id },
+        { name: 'Double', capacity: 6, hotelId: hotelResort.id },
+        { name: 'Triple', capacity: 3, hotelId: hotelResort.id },
       ],
     });
   }
