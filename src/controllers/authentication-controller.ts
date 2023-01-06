@@ -4,7 +4,6 @@ import httpStatus from 'http-status';
 
 export async function singInPost(req: Request, res: Response) {
   const { email, password } = req.body as SignInParams;
-
   try {
     const result = await authenticationService.signIn({ email, password });
 
