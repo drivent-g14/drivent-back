@@ -23,6 +23,9 @@ async function validateUniqueEmailOrFail(email: string) {
     throw duplicatedEmailError();
   }
 }
+// TODO: Verificar se esta função é necessária neste momento,
+// aparentemente ela valida se o evento já está iniciado ou não e
+// com base nisso tira um erro
 
 // async function canEnrollOrFail() {
 //   const canEnroll = await eventsService.isCurrentEventActive();
