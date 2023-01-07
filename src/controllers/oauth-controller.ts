@@ -8,7 +8,9 @@ export async function signInWithGithub(req: Request, res: Response) {
 
     if (code) {
       let githubToken: string;
+      let userData;
       const GITHUB_URL = 'https://github.com/login/oauth/access_token';
+
       await axios
         .post(
           `${GITHUB_URL}?client_id=${process.env.GH_BASIC_CLIENT_ID}&client_secret=${process.env.GH_BASIC_SECRET_ID}&code=${code}`,
@@ -20,13 +22,24 @@ export async function signInWithGithub(req: Request, res: Response) {
           throw err;
         });
 
-      const decode = githubToken.split('&').reduce<Record<string, string>>((acc, curr) => {
+      const tokenInfo = githubToken.split('&').reduce<Record<string, string>>((acc, curr) => {
         const [key, value] = curr.split('=');
         acc[key] = value;
         return acc;
       }, {});
 
-      return res.status(httpStatus.OK).send(code);
+      await axios
+        .get('https://api.github.com/user', {
+          headers: {
+            Authorization: `bearer ${tokenInfo.access_token}`,
+          },
+        })
+        .then((res) => (userData = res.data))
+        .catch((err) => {
+          throw err;
+        });
+
+      return res.status(httpStatus.OK).send(userData);
     }
 
     return res.status(httpStatus.UNAUTHORIZED).send({ message: 'code is missing' });

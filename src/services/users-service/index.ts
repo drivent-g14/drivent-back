@@ -6,7 +6,7 @@ import eventsService from '../events-service';
 import { duplicatedEmailError } from './errors';
 
 export async function createUser({ email, password }: CreateUserParams): Promise<User> {
-  await canEnrollOrFail();
+  //await canEnrollOrFail();
 
   await validateUniqueEmailOrFail(email);
 
@@ -24,12 +24,12 @@ async function validateUniqueEmailOrFail(email: string) {
   }
 }
 
-async function canEnrollOrFail() {
-  const canEnroll = await eventsService.isCurrentEventActive();
-  if (!canEnroll) {
-    throw cannotEnrollBeforeStartDateError();
-  }
-}
+// async function canEnrollOrFail() {
+//   const canEnroll = await eventsService.isCurrentEventActive();
+//   if (!canEnroll) {
+//     throw cannotEnrollBeforeStartDateError();
+//   }
+// }
 
 export type CreateUserParams = Pick<User, 'email' | 'password'>;
 
