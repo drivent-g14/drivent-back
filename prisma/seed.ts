@@ -73,6 +73,54 @@ async function main() {
 
   const rooms = await prisma.room.findMany({});
   console.log(rooms);
+
+  const location = await prisma.location.findMany();
+  if(location.length === 0) {
+    await prisma.location.createMany({
+      data: [
+        { name: 'Auditório Principal' },
+        { name: 'Auditório Lateral' },
+        { name: 'Sala de Workshop' }
+      ],
+    });
+  };
+  const locations = await prisma.location.findMany({});
+  console.log(locations);
+
+  const activities = await prisma.activities.findMany({});
+  if(activities.length === 0) {
+    await prisma.activities.createMany({
+      data: [
+        {
+          locationId: locations[0].id, 
+          slots: 27, 
+          name: 'Minecraft: Montando o PC Ideal',
+          startsAt: '09:00',
+          endsAt: '10:00',
+          day: 'Sexta, 22/10'
+        },
+        {
+          locationId: locations[0].id, 
+          slots: 0, 
+          name: 'LoL: montando o PC ideal',
+          startsAt: '10:00',
+          endsAt: '11:00',
+          day: 'Sexta, 22/10'
+        },
+        {
+          locationId: locations[1].id, 
+          slots: 20, 
+          name: 'CS-GO: montando o PC ideal',
+          startsAt: '15:00',
+          endsAt: '16:00',
+          day: 'Sexta, 22/10'
+        }
+      ],
+    });
+  };
+
+  const Activities = await prisma.activities.findMany({});
+  console.log(Activities);
 }
 
 main()
