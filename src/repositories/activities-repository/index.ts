@@ -8,7 +8,7 @@ async function getActivities() {
   });
 }
 
-async function findActivity(id: number) {
+async function findActivities(id: number) {
   return prisma.activities.findFirst({
     where: { id },
     include: {
@@ -17,7 +17,7 @@ async function findActivity(id: number) {
   });
 }
 
-async function registerUserActivity(userId: number, id: number) {
+async function registerUserActivities(userId: number, id: number) {
   return prisma.userActivities.create({
     data: {
       userId,
@@ -26,7 +26,7 @@ async function registerUserActivity(userId: number, id: number) {
   });
 }
 
-async function updateSlots(id: number, slots: number) {
+async function updateSlotsActivities(id: number, slots: number) {
   return prisma.activities.update({
     where: {
       id,
@@ -37,11 +37,21 @@ async function updateSlots(id: number, slots: number) {
   });
 }
 
+async function findUserActivities(userId: number, id: number) {
+  return prisma.userActivities.findFirst({
+    where: {
+      userId,
+      activitiesId: id,
+    },
+  });
+}
+
 const activitiesRepository = {
   getActivities,
-  findActivity,
-  registerUserActivity,
-  updateSlots,
+  findActivities,
+  registerUserActivities,
+  updateSlotsActivities,
+  findUserActivities,
 };
 
 export { activitiesRepository };
