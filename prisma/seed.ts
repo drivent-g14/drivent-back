@@ -114,7 +114,103 @@ async function main() {
           startsAt: '15:00',
           endsAt: '16:00',
           day: 'Sexta, 22/10'
-        }
+        },
+        {
+          locationId: locations[1].id, 
+          slots: 0, 
+          name: 'FIFA 23: montando o PC ideal',
+          startsAt: '17:00',
+          endsAt: '18:00',
+          day: 'Sexta, 22/10'
+        },
+        {
+          locationId: locations[2].id, 
+          slots: 10, 
+          name: 'RDR 2: montando o PC ideal',
+          startsAt: '12:00',
+          endsAt: '14:00',
+          day: 'Sexta, 22/10'
+        },
+        {
+          locationId: locations[0].id, 
+          slots: 20, 
+          name: 'Minecraft: Montando o PC Ideal',
+          startsAt: '09:00',
+          endsAt: '10:00',
+          day: 'Sábado, 23/10'
+        },
+        {
+          locationId: locations[0].id, 
+          slots: 10, 
+          name: 'LoL: montando o PC ideal',
+          startsAt: '10:00',
+          endsAt: '11:00',
+          day: 'Sábado, 23/10'
+        },
+        {
+          locationId: locations[1].id, 
+          slots: 35, 
+          name: 'CS-GO: montando o PC ideal',
+          startsAt: '15:00',
+          endsAt: '16:00',
+          day: 'Sábado, 23/10'
+        },
+        {
+          locationId: locations[1].id, 
+          slots: 15, 
+          name: 'FIFA 23: montando o PC ideal',
+          startsAt: '17:00',
+          endsAt: '18:00',
+          day: 'Sábado, 23/10'
+        },
+        {
+          locationId: locations[2].id, 
+          slots: 55, 
+          name: 'RDR 2: montando o PC ideal',
+          startsAt: '12:00',
+          endsAt: '14:00',
+          day: 'Sábado, 23/10'
+        },
+        {
+          locationId: locations[0].id, 
+          slots: 0, 
+          name: 'Minecraft: Montando o PC Ideal',
+          startsAt: '09:00',
+          endsAt: '10:00',
+          day: 'Domingo, 24/10'
+        },
+        {
+          locationId: locations[0].id, 
+          slots: 6, 
+          name: 'LoL: montando o PC ideal',
+          startsAt: '10:00',
+          endsAt: '11:00',
+          day: 'Domingo, 24/10'
+        },
+        {
+          locationId: locations[1].id, 
+          slots: 13, 
+          name: 'CS-GO: montando o PC ideal',
+          startsAt: '15:00',
+          endsAt: '16:00',
+          day: 'Domingo, 24/10'
+        },
+        {
+          locationId: locations[2].id, 
+          slots: 0, 
+          name: 'RDR 2: montando o PC ideal',
+          startsAt: '12:00',
+          endsAt: '14:00',
+          day: 'Domingo, 24/10'
+        },
+        {
+          locationId: locations[2].id, 
+          slots: 15, 
+          name: 'FIFA 23: montando o PC ideal',
+          startsAt: '16:00',
+          endsAt: '17:00',
+          day: 'Domingo, 24/10'
+        },
       ],
     });
   };
