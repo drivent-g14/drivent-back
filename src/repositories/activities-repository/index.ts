@@ -18,7 +18,7 @@ async function findActivities(id: number) {
 }
 
 async function registerUserActivities(userId: number, id: number) {
-  return prisma.userActivities.create({
+  return prisma.userActivities.createMany({
     data: {
       userId,
       activitiesId: id,

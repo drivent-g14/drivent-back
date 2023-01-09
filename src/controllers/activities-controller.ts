@@ -16,7 +16,7 @@ export async function addActivities(req: AuthenticatedRequest, res: Response) {
   try {
     const { userId } = req;
     const { activitiesId } = req.params;
-    const activities = await activitiesServices.createActivities(userId, Number(activitiesId));
+    const activities = await activitiesServices.createActivities(Number(userId), Number(activitiesId));
     return res.status(httpStatus.OK).send(activities);
   } catch (error) {
     return res.sendStatus(httpStatus.NOT_FOUND);

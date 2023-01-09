@@ -24,7 +24,6 @@ async function createActivities(userId: number, id: number) {
   const activities = await activitiesRepository.findActivities(id);
   if (!activities) throw notFoundError();
   if (activities.slots === 0) throw notFoundError();
-
   const saves = await activitiesRepository.findUserActivities(userId);
 
   const { startsAt, endsAt } = activities;
@@ -47,7 +46,6 @@ async function createActivities(userId: number, id: number) {
 
   await activitiesRepository.updateSlotsActivities(id, activities.slots - 1);
   const result = await activitiesRepository.registerUserActivities(userId, id);
-
   return result;
 }
 
