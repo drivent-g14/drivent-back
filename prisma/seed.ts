@@ -19,6 +19,20 @@ async function main() {
   }
   console.log({ event });
 
+  const ticketsTypes = await prisma.ticketType.findMany({});
+  if(ticketsTypes.length === 0){
+    await prisma.ticketType.createMany({
+      data: [
+        { name: 'Presencial - mask', price: 250, isRemote: false, includesHotel: false },
+        { name: 'Online - mask', price: 100, isRemote: true, includesHotel: false },
+        { name: 'Sem hotel - Presencial', price: 0, isRemote: false, includesHotel: false },
+        { name: 'Com Hotel - Presencial', price: 250, isRemote: false, includesHotel: true },
+      ],
+    });
+  };
+  const ticketsType = await prisma.ticketType.findMany({});
+  console.log(ticketsType);
+
   const hotel = await prisma.hotel.findFirst({
     where: {
       name: 'Driven World',

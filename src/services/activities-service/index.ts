@@ -1,4 +1,4 @@
-import { notFoundError } from '@/errors';
+import { conflictError, notFoundError } from '@/errors';
 import { activitiesRepository } from '@/repositories/activities-repository';
 import enrollmentRepository from '@/repositories/enrollment-repository';
 import ticketRepository from '@/repositories/ticket-repository';
@@ -41,7 +41,7 @@ async function createActivities(userId: number, id: number) {
     intervalStartsAt.length !== 0 ||
     intervalEndsAt.length !== 0
   ) {
-    throw notFoundError();
+    throw conflictError('');
   }
 
   await activitiesRepository.updateSlotsActivities(id, activities.slots - 1);
