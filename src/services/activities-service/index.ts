@@ -10,11 +10,6 @@ async function getActivities() {
   return activities;
 }
 
-async function getSaves(userId: number, id: number) {
-  const result = await activitiesRepository.findUserActivities(userId, id);
-  return result;
-}
-
 async function createActivities(userId: number, id: number) {
   const enrollment = await enrollmentRepository.findWithAddressByUserId(userId);
   if (!enrollment) throw notFoundError();
@@ -30,6 +25,26 @@ async function createActivities(userId: number, id: number) {
   if (!activities) throw notFoundError();
   if (activities.slots === 0) throw notFoundError();
 
+  const saves = await activitiesRepository.findUserActivities(userId);
+
+  const { startsAt, endsAt } = activities;
+  const resultStartsAt = saves.map((value) => value.Activities.startsAt);
+  const resultEndsAt = saves.map((value) => value.Activities.endsAt);
+
+  const finalStartsAt = resultStartsAt.filter((value) => value === startsAt);
+  const finalEndsAt = resultEndsAt.filter((value) => value === endsAt);
+  const intervalStartsAt = resultEndsAt.filter((value) => value === startsAt);
+  const intervalEndsAt = resultStartsAt.filter((value) => value === endsAt);
+
+  if (
+    finalStartsAt.length !== 0 ||
+    finalEndsAt.length !== 0 ||
+    intervalStartsAt.length !== 0 ||
+    intervalEndsAt.length !== 0
+  ) {
+    throw notFoundError();
+  }
+
   await activitiesRepository.updateSlotsActivities(id, activities.slots - 1);
   const result = await activitiesRepository.registerUserActivities(userId, id);
 
@@ -39,7 +54,6 @@ async function createActivities(userId: number, id: number) {
 const activitiesServices = {
   getActivities,
   createActivities,
-  getSaves,
 };
 
 export { activitiesServices };

@@ -37,11 +37,13 @@ async function updateSlotsActivities(id: number, slots: number) {
   });
 }
 
-async function findUserActivities(userId: number, id: number) {
-  return prisma.userActivities.findFirst({
+async function findUserActivities(userId: number) {
+  return prisma.userActivities.findMany({
     where: {
       userId,
-      activitiesId: id,
+    },
+    include: {
+      Activities: true,
     },
   });
 }
