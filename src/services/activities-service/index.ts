@@ -49,9 +49,15 @@ async function createActivities(userId: number, id: number) {
   return result;
 }
 
+async function getActivitiesById(userId: number) {
+  const result = await activitiesRepository.findUserActivities(userId);
+  return result;
+}
+
 const activitiesServices = {
   getActivities,
   createActivities,
+  getActivitiesById,
 };
 
 export { activitiesServices };
