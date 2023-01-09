@@ -27,21 +27,19 @@ async function createActivities(userId: number, id: number) {
   const saves = await activitiesRepository.findUserActivities(userId);
 
   const { startsAt, endsAt } = activities;
-  const resultStartsAt = saves.map((value) => value.Activities.startsAt);
-  const resultEndsAt = saves.map((value) => value.Activities.endsAt);
+  const resultHours = saves.map((value) => {
+    return [value.Activities.startsAt, value.Activities.endsAt];
+  });
+  let arr = 0;
+  resultHours.map((value) => {
+    if (value[0] === startsAt && value[1] === endsAt) arr = 1;
+    if (value[0] <= startsAt && endsAt <= value[1]) arr = 2;
+    if (value[0] <= startsAt && startsAt < value[1] && endsAt >= value[1]) arr = 3;
+    if (startsAt <= value[0] && endsAt > value[0] && endsAt <= value[1]) arr = 4;
+  });
 
-  const finalStartsAt = resultStartsAt.filter((value) => value === startsAt);
-  const finalEndsAt = resultEndsAt.filter((value) => value === endsAt);
-  const intervalStartsAt = resultEndsAt.filter((value) => value === startsAt);
-  const intervalEndsAt = resultStartsAt.filter((value) => value === endsAt);
-
-  if (
-    finalStartsAt.length !== 0 ||
-    finalEndsAt.length !== 0 ||
-    intervalStartsAt.length !== 0 ||
-    intervalEndsAt.length !== 0
-  ) {
-    throw conflictError('');
+  if (arr !== 0) {
+    throw conflictError('ConflictError');
   }
 
   await activitiesRepository.updateSlotsActivities(id, activities.slots - 1);

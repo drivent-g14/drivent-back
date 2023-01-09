@@ -25,8 +25,8 @@ async function main() {
       data: [
         { name: 'Presencial - mask', price: 250, isRemote: false, includesHotel: false },
         { name: 'Online - mask', price: 100, isRemote: true, includesHotel: false },
-        { name: 'Sem hotel - Presencial', price: 0, isRemote: false, includesHotel: false },
-        { name: 'Com Hotel - Presencial', price: 250, isRemote: false, includesHotel: true },
+        { name: 'Sem Hotel + Presencial', price: 0, isRemote: false, includesHotel: false },
+        { name: 'Com Hotel + Presencial', price: 350, isRemote: false, includesHotel: true },
       ],
     });
   };
@@ -125,8 +125,8 @@ async function main() {
           locationId: locations[1].id, 
           slots: 20, 
           name: 'CS-GO: montando o PC ideal',
-          startsAt: '15:00',
-          endsAt: '16:00',
+          startsAt: '13:00',
+          endsAt: '14:00',
           day: 'Sexta, 22/10'
         },
         {
@@ -142,7 +142,7 @@ async function main() {
           slots: 10, 
           name: 'RDR 2: montando o PC ideal',
           startsAt: '12:00',
-          endsAt: '14:00',
+          endsAt: '15:00',
           day: 'Sexta, 22/10'
         },
         {
@@ -165,7 +165,7 @@ async function main() {
           locationId: locations[1].id, 
           slots: 35, 
           name: 'CS-GO: montando o PC ideal',
-          startsAt: '15:00',
+          startsAt: '14:00',
           endsAt: '16:00',
           day: 'Sábado, 23/10'
         },
@@ -197,7 +197,7 @@ async function main() {
           locationId: locations[0].id, 
           slots: 6, 
           name: 'LoL: montando o PC ideal',
-          startsAt: '10:00',
+          startsAt: '09:00',
           endsAt: '11:00',
           day: 'Domingo, 24/10'
         },

@@ -19,7 +19,8 @@ export async function addActivities(req: AuthenticatedRequest, res: Response) {
     const result = await activitiesServices.createActivities(Number(userId), Number(activitiesId));
     return res.status(httpStatus.OK).send(result);
   } catch (error) {
-    return res.sendStatus(httpStatus.NOT_FOUND);
+    if (error.name === 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
+    if (error.name === 'ConflictError') return res.sendStatus(httpStatus.CONFLICT);
   }
 }
 
